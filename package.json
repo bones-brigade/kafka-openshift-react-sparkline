@@ -1,5 +1,5 @@
 {
-  "name": "kafka-openshift-nodejs-charter",
+  "name": "kafka-openshift-nodejs-sparkline",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
