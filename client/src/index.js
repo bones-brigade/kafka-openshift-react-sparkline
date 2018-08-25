@@ -56,24 +56,31 @@ class Console extends React.Component {
     this.updateNumbers = this.updateNumbers.bind(this);
   }
 
-  updateNumbers() {
+  updateNumbers(data) {
+    var value = parseInt(data, 10);
     var newnumbers = this.state.numbers.slice();
-    var numb = Math.floor(Math.random() * Math.floor(100));
-    newnumbers.unshift(numb);
-    this.setState({
-      numbers: newnumbers.slice(0, 100),
-    });
+    if (!isNaN(value) && (value >=0 && value <= 100)) {
+      newnumbers.unshift(value);
+      this.setState({
+        numbers: newnumbers.slice(0, 100),
+      });
+    }
   }
 
   componentDidMount() {
+    /*
     this.timerID = window.setInterval(
       this.updateNumbers,
       2000
     );
+    */
+    const socket = new WebSocket('ws://localhost:8081');
+    socket.onopen = () => console.log('connection open');
+    socket.onerror = (error) => console.log('connection error ' + error);
+    socket.onmessage = (event) => this.updateNumbers(event.data);
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timerID);
   }
 
   render() {
