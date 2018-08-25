@@ -47,7 +47,7 @@ class Sparkline extends React.Component {
 class Console extends React.Component {
   constructor(props) {
     super(props);
-    var zeroes = new Array;
+    var zeroes = [];
     zeroes.length = 100;
     zeroes.fill(0);
     this.state = {
