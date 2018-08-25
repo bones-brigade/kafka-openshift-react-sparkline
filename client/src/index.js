@@ -74,7 +74,7 @@ class Console extends React.Component {
       2000
     );
     */
-    const socket = new WebSocket('ws://localhost:8081');
+    const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URI);
     socket.onopen = () => console.log('connection open');
     socket.onerror = (error) => console.log('connection error ' + error);
     socket.onmessage = (event) => this.updateNumbers(event.data);
