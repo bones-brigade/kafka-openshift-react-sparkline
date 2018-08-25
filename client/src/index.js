@@ -47,17 +47,21 @@ class Sparkline extends React.Component {
 class Console extends React.Component {
   constructor(props) {
     super(props);
+    var zeroes = new Array;
+    zeroes.length = 100;
+    zeroes.fill(0);
     this.state = {
-      numbers: [10, 14, 12, 20, 31, 27, 44, 36, 52, 55, 62, 68, 69, 88, 74, 88, 91],
+      numbers: zeroes,
     }
     this.updateNumbers = this.updateNumbers.bind(this);
   }
 
   updateNumbers() {
     var newnumbers = this.state.numbers.slice();
-    newnumbers.unshift(0);
+    var numb = Math.floor(Math.random() * Math.floor(100));
+    newnumbers.unshift(numb);
     this.setState({
-      numbers: newnumbers,
+      numbers: newnumbers.slice(0, 100),
     });
   }
 
