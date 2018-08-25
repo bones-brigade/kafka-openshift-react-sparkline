@@ -12,34 +12,66 @@ import 'patternfly/dist/js/patternfly.js';
 class Sparkline extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: {
-        columns: [
-          ['%', 10, 14, 12, 20, 31, 27, 44, 36, 52, 55, 62, 68, 69, 88, 74, 88, 91],
-        ],
-        type: 'area'
-      }
+    this.renderChart = this.renderChart.bind(this);
+  }
+
+  renderChart() {
+    var data = {
+      columns: [
+        this.props.numbers,
+      ],
+      type: 'area'
     };
+
+    var c3ChartDefaults = $().c3ChartDefaults();
+    var config = c3ChartDefaults.getDefaultSparklineConfig();
+    config.bindto = '#sparkline-chart';
+    config.data = data;
+    c3.generate(config);
   }
 
   componentDidMount() {
-    var c3ChartDefaults = $().c3ChartDefaults();
-    var sparklineChartConfig = c3ChartDefaults.getDefaultSparklineConfig();
-    sparklineChartConfig.bindto = '#sparkline-chart';
-    sparklineChartConfig.data = this.state.data;
-    c3.generate(sparklineChartConfig);
+    this.renderChart()
   }
 
   render() {
+    this.renderChart()
     return (
       <div>
-        <div id="sparkline-chart" class="chart-pf-sparkline"></div>
+        <div id="sparkline-chart" className="chart-pf-sparkline"></div>
       </div>
     );
   }
 }
 
 class Console extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      numbers: [10, 14, 12, 20, 31, 27, 44, 36, 52, 55, 62, 68, 69, 88, 74, 88, 91],
+    }
+    this.updateNumbers = this.updateNumbers.bind(this);
+  }
+
+  updateNumbers() {
+    var newnumbers = this.state.numbers.slice();
+    newnumbers.unshift(0);
+    this.setState({
+      numbers: newnumbers,
+    });
+  }
+
+  componentDidMount() {
+    this.timerID = window.setInterval(
+      this.updateNumbers,
+      2000
+    );
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.timerID);
+  }
+
   render() {
     return (
       <div className="container-fluid">
@@ -48,9 +80,10 @@ class Console extends React.Component {
             <img src="/brand.svg" alt="Kafka Charter"/>
           </div>
         </nav>
-        <div class="row">
-          <div class="col-xs-8 col-xs-offset-2">
-            <Sparkline />
+        <div className="row">
+          <div className="col-xs-8 col-xs-offset-2">
+            <Sparkline
+               numbers={this.state.numbers} />
           </div>
         </div>
       </div>
