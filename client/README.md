@@ -1,6 +1,6 @@
-# kafka-react-openshift-python-sparkline client
+# kafka-openshift-react-sparkline client
 
-This is the browser side code for the kafka-react-openshift-python-sparkline
+This is the browser side code for the kafka-openshift-react-sparkline
 application. It can be built and served as a static page in several ways. For
 convenience it is deployed as a nodejs application using instructions from the
 upstream
@@ -10,7 +10,7 @@ project.
 ## Launching on OpenShift
 
 ```
-oc new-app centos/nodejs-8-centos7~https://github.com/bones-brigade/kafka-react-openshift-python-sparkline \
+oc new-app centos/nodejs-8-centos7~https://github.com/bones-brigade/kafka-openshift-react-sparkline \
   --context-dir client \
   -e REACT_APP_WEBSOCKET_URI=<your server route URL> \
   --name=client

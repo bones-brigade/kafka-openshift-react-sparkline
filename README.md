@@ -1,4 +1,4 @@
-# kafka-react-openshift-python-sparkline
+# kafka-openshift-react-sparkline
 
 This application is for displaying formated data from an Apache Kafka topic
 through a reactive browser-side client. It uses a simple chart visualization

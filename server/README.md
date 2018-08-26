@@ -1,13 +1,13 @@
-# kafka-react-openshift-python-sparkline
+# kafka-openshift-react-sparkline server
 
-This is the websocket server component for the kafka-react-openshift-python-sparkline
+This is the websocket server component for the kafka-openshift-react-sparkline
 application. It should be deployed in its own container, with an exposed route
 that the client can use to connect.
 
 ## Launching on OpenShift
 
 ```
-oc new-app centos/python-36-centos7~https://github.com/bones-brigade/kafka-react-openshift-python-sparkline \
+oc new-app centos/python-36-centos7~https://github.com/bones-brigade/kafka-openshift-react-sparkline \
   --context-dir server \
   -e KAFKA_BROKERS=kafka:9092 \
   -e KAFKA_TOPIC=bones-brigade \
