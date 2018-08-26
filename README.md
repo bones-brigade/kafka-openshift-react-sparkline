@@ -6,7 +6,7 @@ to display the data.
 
 ## Architecture
 
-![application architecture](docs/architecture.svg)
+![application architecture](docs/architecture.png)
 
 ## Prerequisites
 
