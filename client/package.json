@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts build && serve -s -l tcp://0.0.0.0:8080 build",
-    "build": "",
+    "build": "npm install",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
