@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "serve -s build -p 8080",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm install -g serve",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
