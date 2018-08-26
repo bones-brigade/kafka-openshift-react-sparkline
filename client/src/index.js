@@ -68,16 +68,15 @@ class Console extends React.Component {
   }
 
   componentDidMount() {
-    /*
-    this.timerID = window.setInterval(
-      this.updateNumbers,
-      2000
-    );
-    */
-    const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URI);
-    socket.onopen = () => console.log('connection open');
-    socket.onerror = (error) => console.log('connection error ' + error);
-    socket.onmessage = (event) => this.updateNumbers(event.data);
+    let socketURI = process.env.REACT_APP_WEBSOCKET_URI;
+    if (socketURI !== undefined) {
+      const socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URI);
+      socket.onopen = () => console.log('connection open');
+      socket.onerror = (error) => console.log('connection error ' + error);
+      socket.onmessage = (event) => this.updateNumbers(event.data);
+    } else {
+      console.log('error: no websocket uri');
+    }
   }
 
   componentWillUnmount() {
