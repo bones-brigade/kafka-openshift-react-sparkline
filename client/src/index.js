@@ -90,7 +90,7 @@ class Console extends React.Component {
             <img src="/brand.svg" alt="Kafka Charter"/>
           </div>
         </nav>
-        <div className="row">
+        <div className="row-fluid">
           <div className="col-xs-8 col-xs-offset-2">
             <Sparkline
                numbers={this.state.numbers} />
