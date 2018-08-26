@@ -22,9 +22,9 @@ def parse_args(parser):
     return args
 
 
-async def update(websocket, path, args):
+async def update(websocket, path, brokers, topic):
     try:
-        consumer = KafkaConsumer(args.topic, bootstrap_servers=args.brokers)
+        consumer = KafkaConsumer(topic, bootstrap_servers=brokers)
         for msg in consumer:
             # check to ensure that client is ready
             pong_waiter = await websocket.ping()
@@ -59,7 +59,10 @@ if __name__ == '__main__':
     args = parse_args(parser)
 
     # setup the websocket server
-    bound_handler = functools.partial(update, args=args)
+    bound_handler = functools.partial(
+            update,
+            brokers=args.brokers,
+            topic=args.topic)
     start_server = websockets.serve(bound_handler, args.host, args.port)
 
     # start the websocket coroutine
