@@ -55,7 +55,7 @@ if __name__ == '__main__':
     parser.add_argument(
             '--port',
             help='Port to use for websocket server',
-            default=8081)
+            default=8080)
     args = parse_args(parser)
 
     # setup the websocket server
