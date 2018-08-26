@@ -10,7 +10,7 @@ oc new-app centos/python-36-centos7~https://github.com/bones-brigade/kafka-react
   --context-dir test/emitter \
   -e KAFKA_BROKERS=kafka:9092 \
   -e KAFKA_TOPIC=bones-brigade \
-  --name=test-emitter
+  --name=emitter
 ```
 
 You will need to adjust the `KAFKA_BROKERS` and `KAFKA_TOPICS` variables to

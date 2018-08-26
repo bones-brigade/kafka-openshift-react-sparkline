@@ -7,20 +7,14 @@ upstream
 [Create React App](https://github.com/facebookincubator/create-react-app)
 project.
 
-## Build
+## Launching on OpenShift
 
 ```
-yarn build
+oc new-app centos/nodejs-8-centos7~https://github.com/bones-brigade/kafka-react-openshift-python-sparkline \
+  --context-dir client \
+  -e REACT_APP_WEBSOCKET_URI=<your server route URL> \
+  --name=client
 ```
 
-output will be in `build` directory
-
-## Devel
-
-```
-yarn start
-```
-
-## Credits
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+You will need to adjust the `REACT_APP_WEBSOCKET_URI` to match the route for
+your server application. Please note, this must be in the form `ws://hostname/`.
